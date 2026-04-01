@@ -1,0 +1,27 @@
+class MinStack:
+
+    def __init__(self):
+        # initalize reg stack and min stack 
+        self.stack = []
+        self.min_stack = []
+
+    def push(self, val: int) -> None:
+        self.stack.append(val)
+
+        # push only the smallest val on the min_stack 
+        if not self.min_stack:
+            self.min_stack.append(val)
+        else:
+            self.min_stack.append(min(val, self.min_stack[-1]))
+
+    def pop(self) -> None:
+        # pop from both stacks 
+        self.stack.pop()
+        self.min_stack.pop()
+
+    def top(self) -> int:
+        return self.stack[-1]
+        
+    def getMin(self) -> int:
+        return self.min_stack[-1]
+        
